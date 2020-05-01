@@ -1,0 +1,46 @@
+.keyboard{
+  position: absolute;
+}
+
+.white_keys{
+  display: flex;
+  position: absolute;
+  z-index: 0;
+}
+
+.black_keys{
+  position: absolute;
+  display: flex;
+  z-index: 1;
+}
+
+.white {
+  text-align: center;
+  width: 3rem;
+  border: 1px solid;
+  padding-top: 8rem;
+  background-color: #feb;
+  border-radius:0 0 4px 4px;
+}
+
+.black {
+  text-align: center;
+  width: 2rem;
+  border: 1px solid;
+  padding-top: 5rem;
+  background-color: #344;
+  margin:0 0.4rem;
+  border-radius:0 0 4px 4px;
+}
+
+.black:nth-child(1) {
+  margin-left: 2.2rem;
+}
+
+.black:nth-child(5n+2) {
+  margin-right: 4rem; 
+}
+
+.black:nth-child(5n) {
+  margin-right: 4rem;
+}

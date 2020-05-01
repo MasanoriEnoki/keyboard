@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>How old are you?</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      function play(freq) {
+          const audioctx = new AudioContext();      // AudioContext を作成
+          const osc = new OscillatorNode(audioctx); // オシレータを作成
+          osc.connect(audioctx.destination);  // オシレータを出力に接続
+          console.log(osc)
+          osc.frequency.value = freq;
+          osc.start();                        // オシレータ動作開始
+      }
+
+      const white_keys = [];
+      const black_keys = [];
+      let i = 0;
+      while (i <= 22) {
+        if (i % 12 === 0 || i % 12 === 2 || i % 12 === 4 || i % 12 === 5 || i % 12 === 7 || i % 12 === 9 || i % 12 === 11) {
+          white_keys.push( <div className="white" onClick={key_down} key={i}>{i}</div>)
+          i++;
+        } else {
+          black_keys.push(<div className="black" onClick={key_down} key={i}>{i}</div>)
+        i++;
+        }
+      }
+
+      function key_down(p) {
+        console.log(p.target.textContent)
+        play(130 * (2 ** (Number(p.target.textContent) / 12)))
+      }
+
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {};
+        }
+        render() {
+          return (
+            <div className="keyboard">
+              <div className="white_keys">{white_keys}</div>
+              <div className="black_keys">{black_keys}</div>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+      )
+    </script>
+
+  </body>
+</html>
